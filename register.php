@@ -8,7 +8,11 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (empty(trim($_POST['username']))) {
             $usernameErr = 'Please enter a username';
-        } else {
+        } 
+        else if (strlen($_POST['username']) > 10) {
+          $usernameErr = 'Limit to 10 Characters Only';
+        } 
+        else {
             $sql = 'SELECT * FROM users WHERE username = ?';
             $statement = mysqli_prepare($link, $sql);
             if ($statement) {
